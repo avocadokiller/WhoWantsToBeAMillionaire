@@ -51,12 +51,13 @@ public class View extends JFrame {
         panelCont.add(winnerListPanel, "5");
 
         
-        setLocationRelativeTo(null);
+        setLocationByPlatform(true);
         this.setVisible(true);
         this.setSize(400, 600);
         this.add(panelCont);
         this.setResizable(false);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        
         cl.show(panelCont, "1");
          
     }

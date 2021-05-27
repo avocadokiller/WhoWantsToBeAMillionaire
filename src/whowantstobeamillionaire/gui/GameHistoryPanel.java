@@ -65,12 +65,16 @@ public class GameHistoryPanel extends JPanel{
             } catch (IOException e) {
                 e.printStackTrace();
             }  
+        
         newbut.setFont(customFont2);
+        
         gameTableModel = new DefaultTableModel();
-        table = new JTable(gameTableModel);
         gameTableModel.addColumn("NAME");
         gameTableModel.addColumn("WINNINGS");
         gameTableModel.addColumn("DATE");
+        
+        
+        table = new JTable(gameTableModel);
         table.setPreferredScrollableViewportSize(new Dimension(350,400));
         table.setBackground(new Color(168, 221, 255));
         table.getTableHeader().setBackground(new Color(15, 60, 139));

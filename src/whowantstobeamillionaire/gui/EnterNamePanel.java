@@ -27,7 +27,8 @@ public class EnterNamePanel extends JPanel{
     
     JTextField name;
     Image bgImage;
-     Font customFont;
+    Font customFont;
+    
     public EnterNamePanel() throws FontFormatException{
         
         try{
@@ -44,15 +45,17 @@ public class EnterNamePanel extends JPanel{
                 e.printStackTrace();
             } 
         
-        name = new JTextField();
-        name.setFont(customFont);
-        name.setBackground(new Color(47, 59, 64));
-        name.setForeground(new Color(168, 221, 255));
-        name.setCaretColor(new Color(168, 221, 255));
-        name.setBorder(BorderFactory.createLoweredBevelBorder()); 
-        name.setBounds(140, 370, 120, 30);
-        setLayout(null);
-        add(name);
+        this.name = new JTextField();
+        
+        this.name.setFont(customFont);
+        this.name.setBackground(new Color(47, 59, 64));
+        this.name.setForeground(new Color(168, 221, 255));
+        this.name.setCaretColor(new Color(168, 221, 255));
+        this.name.setBorder(BorderFactory.createLoweredBevelBorder()); 
+        this.name.setBounds(140, 370, 120, 30);
+        
+        this.setLayout(null);
+        this.add(name);
     }
      
     @Override

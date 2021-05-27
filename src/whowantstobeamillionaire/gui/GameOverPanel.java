@@ -15,7 +15,6 @@ import java.io.File;
 import java.io.IOException;
 import javax.imageio.ImageIO;
 import javax.swing.JButton;
-import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
 
@@ -45,21 +44,24 @@ public class GameOverPanel extends JPanel{
              bgImage = ImageIO.read(new File("gameoverbg.png"));
              } catch(Exception e){e.printStackTrace();}
         
-        winnings = new JTextArea("You finished with: $");
-        winnings.setBounds(130, 300, 140, 50);
-        winnings.setBackground(new Color(47, 59, 64));
-        winnings.setForeground(new Color(168, 221, 255));
-        winnings.setFont(customFont);
-        winnings.setWrapStyleWord(true);
-        winnings.setLineWrap(true);
-        backToMain = new JButton("BACK TO MAIN");
-        backToMain.setBounds(125, 500, 150, 30);
+        this.winnings = new JTextArea("You finished with: $");
+        this.backToMain = new JButton("BACK TO MAIN");
+       
+        this.winnings.setBounds(130, 300, 140, 50);
+        this.winnings.setBackground(new Color(47, 59, 64));
+        this.winnings.setForeground(new Color(168, 221, 255));
+        this.winnings.setFont(customFont);
+        this.winnings.setWrapStyleWord(true);
+        this.winnings.setLineWrap(true);
+      
+        this.backToMain.setBounds(125, 500, 150, 30);
         this.backToMain.setBackground(new Color(15, 60, 139));
         this.backToMain.setForeground(new Color(168, 221, 255));
         this.backToMain.setFont(customFont);
-        setLayout(null);
-        add(winnings);
-        add(backToMain);
+        
+        this.setLayout(null);
+        this.add(winnings);
+        this.add(backToMain);
 }
    
     protected void paintComponent(Graphics g) {

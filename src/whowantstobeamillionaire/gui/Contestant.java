@@ -17,10 +17,20 @@ public class Contestant implements Serializable {
     
     String name;
     Integer money;
+
+   
     int hint;
     String date;
     int fiftyFifty;
     
+    
+    public Contestant(String name, Integer money, String date) {
+        this.name = name;
+        this.money = money;
+        this.date = date;
+        this.hint = 0;
+        this.fiftyFifty = 0;
+    }
     public Contestant(String name) {
         this.name = name;
         this.money = 0;
@@ -31,6 +41,9 @@ public class Contestant implements Serializable {
 
         this.date = formatter.format(calendar.getTime());
     }
-    
+     @Override
+    public String toString() {
+        return "Contestant{" + "name=" + name + ", money=" + money + ", hint=" + hint + ", date=" + date + ", fiftyFifty=" + fiftyFifty + '}';
+    }
     
 }

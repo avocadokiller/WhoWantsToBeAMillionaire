@@ -27,43 +27,48 @@ public class MenuPanel extends JPanel{
     JButton  play, wList, gList;
     Image bgImage;
     Font customFont;
+    
     public MenuPanel() throws FontFormatException{
       
-        try{
+    try{
     bgImage = ImageIO.read(new File("Untitled.png"));
-} catch(Exception e){e.printStackTrace();}
+    } catch(Exception e){e.printStackTrace();}
        
-        
-         try {
+    try {
     
-            customFont = Font.createFont(Font.TRUETYPE_FONT, new File("Commodore Rounded v1.2.ttf")).deriveFont(12f);
-            GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
+    customFont = Font.createFont(Font.TRUETYPE_FONT, new File("Commodore Rounded v1.2.ttf")).deriveFont(12f);
+    GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
             
-            ge.registerFont(customFont);
-            } catch (IOException e) {
-                e.printStackTrace();
-            }  
-        this.play = new JButton("PLAY");
-        this.wList = new JButton("WINNER LIST");
-        this.gList = new JButton("GAME HISTORY");
-        this.play.setBackground(new Color(15, 60, 139));
-        this.wList.setBackground(new Color(15, 60, 139));
-        this.gList.setBackground(new Color(15, 60, 139));
-        this.play.setForeground(new Color(168, 221, 255));
-        this.wList.setForeground(new Color(168, 221, 255));
-        this.gList.setForeground(new Color(168, 221, 255));
-        this.play.setFont(customFont);
-        this.wList.setFont(customFont);
-        this.gList.setFont(customFont);
-        
-        this.setLayout(null);
-        play.setBounds(70, 350, 250, 30);
-        wList.setBounds(70, 400, 250, 30);
-        gList.setBounds(70, 450, 250, 30);
+    ge.registerFont(customFont);
+    } catch (IOException e) {
+        e.printStackTrace();
+    }  
+       
+    this.play = new JButton("PLAY");
+    this.wList = new JButton("WINNER LIST");
+    this.gList = new JButton("GAME HISTORY");
 
-        this.add(wList);
-        this.add(gList);
-        this.add(play);
+    this.play.setBackground(new Color(15, 60, 139));
+    this.play.setForeground(new Color(168, 221, 255));
+    this.play.setFont(customFont); 
+    
+    this.wList.setBackground(new Color(15, 60, 139));
+    this.wList.setForeground(new Color(168, 221, 255));
+    this.wList.setFont(customFont);
+    
+    this.gList.setForeground(new Color(168, 221, 255));
+    this.gList.setFont(customFont);
+    this.gList.setBackground(new Color(15, 60, 139));
+    
+    
+    this.play.setBounds(70, 350, 250, 30);
+    this.wList.setBounds(70, 400, 250, 30);
+    this.gList.setBounds(70, 450, 250, 30);
+    
+    this.setLayout(null);
+    this.add(wList);
+    this.add(gList);
+    this.add(play);
 }
     @Override
   protected void paintComponent(Graphics g) {

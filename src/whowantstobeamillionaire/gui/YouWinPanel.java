@@ -28,18 +28,21 @@ public class YouWinPanel extends JPanel{
     Font customFont;
     
     public YouWinPanel() throws FontFormatException{
-   try {
     
-            customFont = Font.createFont(Font.TRUETYPE_FONT, new File("Commodore Rounded v1.2.ttf")).deriveFont(12f);
-            GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
-            
-            ge.registerFont(customFont);
-            } catch (IOException e) {
-                e.printStackTrace();
-            } 
-        try{
+    try {
+    
+        customFont = Font.createFont(Font.TRUETYPE_FONT, new File("Commodore Rounded v1.2.ttf")).deriveFont(12f);
+        GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
+
+        ge.registerFont(customFont);
+        } catch (IOException e) {
+            e.printStackTrace();
+        } 
+    try {
          bgImage = ImageIO.read(new File("youwinbg.png"));
-        } catch(Exception e){e.printStackTrace();}
+        } catch(Exception e){
+            e.printStackTrace();
+        }
        
        
         backToMain2 = new JButton("BACK TO MAIN");
@@ -47,6 +50,7 @@ public class YouWinPanel extends JPanel{
         backToMain2.setFont(customFont);
         backToMain2.setBackground(new Color(15, 60, 139));
         backToMain2.setForeground(new Color(168, 221, 255));
+        
         this.setLayout(null);
         this.add(backToMain2);
 

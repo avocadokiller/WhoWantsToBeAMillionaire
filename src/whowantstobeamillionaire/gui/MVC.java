@@ -13,16 +13,13 @@ import javax.swing.JFrame;
  * @author Admin
  */
 public class MVC {
+    
     public static void main(String[] args) throws IOException, FontFormatException {
         
         JFrame.setDefaultLookAndFeelDecorated(true);
-        WhoWantsToBeAMillionaire game = new WhoWantsToBeAMillionaire();
-        game.fc.newQuestionFiles();
-        game.fc.writeQuestionFiles(); 
+        WhoWantsToBeAMillionaire game = new WhoWantsToBeAMillionaire();      
         View view = new View();
         Controller z = new Controller(view, game);
-       
-
 
     }
 }
