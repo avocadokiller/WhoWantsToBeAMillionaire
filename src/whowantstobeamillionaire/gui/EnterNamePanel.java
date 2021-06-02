@@ -21,20 +21,21 @@ import javax.swing.JTextField;
 
 /**
  *
- * @author Admin
+ * @author Sasha Buskin
  */
-public class EnterNamePanel extends JPanel{
+public class EnterNamePanel extends JPanel{//JPanel to falicitate contestant name entry
     
     JTextField name;
     Image bgImage;
     Font customFont;
     
     public EnterNamePanel() throws FontFormatException{
-        
+        //Import background image
         try{
         bgImage = ImageIO.read(new File("enternamebg.png"));
         } catch(Exception e){e.printStackTrace();}
         
+        //Import custom font
         try {
     
             customFont = Font.createFont(Font.TRUETYPE_FONT, new File("Commodore Rounded v1.2.ttf")).deriveFont(12f);
@@ -58,13 +59,14 @@ public class EnterNamePanel extends JPanel{
         this.add(name);
     }
      
+    //Method to paint background with image
     @Override
     protected void paintComponent(Graphics g) {
 
     super.paintComponent(g);
         g.drawImage(bgImage, 0, 0, null);
 }
-    
+    //Method to add actiontistener to recieve string entry in text box
     void addNameTextListener(ActionListener listenForButton) {
         name.addActionListener(listenForButton);
     }

@@ -5,17 +5,10 @@
  */
 package whowantstobeamillionaire.gui;
 
-import whowantstobeamillionaire.*;
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.io.ObjectInputStream;
+
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
 import java.util.List;
-import java.util.Scanner;
 import java.util.concurrent.ThreadLocalRandom;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -23,7 +16,7 @@ import java.util.logging.Logger;
  *
  * @author Sasha Buskin
  */  
-public class WhoWantsToBeAMillionaire {
+public class WhoWantsToBeAMillionaire {//The game class, the model for the mvc, includes and creates database objects upon instantiation.
   
     Contestant a =  new Contestant(" ");    
     GameDB gameDB = new GameDB();
@@ -39,7 +32,7 @@ public class WhoWantsToBeAMillionaire {
         
         
     }
-
+//Method to add winnings to contestant object upon choosing correct answer 
 public void addWinnings(){
         if(this.a.money == 0){
             this.a.money += 100;
@@ -60,7 +53,7 @@ public void addWinnings(){
             this.a.money *=  2;
         }
     }
-
+//Method to return a random question from the database depending on the current level int of the model.
 public Question randomQuestion(){
                        
         Question q = new Question();

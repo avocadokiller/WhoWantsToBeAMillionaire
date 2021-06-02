@@ -28,9 +28,9 @@ import javax.swing.border.TitledBorder;
 
 /**
  *
- * @author Admin
+ * @author Sasha Buskin
  */
-public class QuestionPanel extends JPanel {
+public class QuestionPanel extends JPanel {//Panel to facilitate asking game question
         
         JTextArea questionArea; 
         JTextField qNum, winnings;
@@ -38,17 +38,17 @@ public class QuestionPanel extends JPanel {
         JLabel nameLabel;
         Image bgImage;
         Font customFont, customFont2;
-        JProgressBar timeBar;
+        JProgressBar timeBar;//countdown timer
         Integer time;
         JTextArea timeLabel;
         Timer timer;
         
     public QuestionPanel() throws FontFormatException{
-              
+         //Load image background     
         try{
           bgImage = ImageIO.read(new File("questionbg.png"));
         } catch(Exception e){e.printStackTrace();}
-        
+        //Load custom font
         try {
     
             customFont2 = Font.createFont(Font.TRUETYPE_FONT, new File("powerpuff girls font.ttf")).deriveFont(12f);
@@ -58,8 +58,9 @@ public class QuestionPanel extends JPanel {
             } catch (IOException e) {
                 e.printStackTrace();
             }     
-         this.setBorder(BorderFactory.createTitledBorder(BorderFactory.createEtchedBorder(), "WhoWantsToBeAMillionaire", TitledBorder.CENTER, TitledBorder.TOP, customFont2, new Color(168, 221, 255)));
-          
+        //Implement panel border with header
+        this.setBorder(BorderFactory.createTitledBorder(BorderFactory.createEtchedBorder(), "WhoWantsToBeAMillionaire", TitledBorder.CENTER, TitledBorder.TOP, customFont2, new Color(168, 221, 255)));
+        //Load custom font 
         try {
     
             customFont = Font.createFont(Font.TRUETYPE_FONT, new File("Commodore Rounded v1.2.ttf")).deriveFont(12f);
@@ -78,13 +79,15 @@ public class QuestionPanel extends JPanel {
         this.winnings = new JTextField();
         this.time =  30;
         this.timeLabel = new JTextArea(" "+time.toString());
-       
+        
+        //Label displaying time to change with time bar
         this.timeLabel.setBounds(163, 500, 66, 40);
         this.timeLabel.setFont(customFont2);
         this.timeLabel.setFont(this.timeLabel.getFont().deriveFont(19f));
         this.timeLabel.setBackground(new Color(47, 59, 64));
         this.timeLabel.setForeground(new Color(168, 221, 255));
-        
+       
+        //Setting up time bar for question countdown
         this.timeBar.setValue(30);
         this.timeBar.setMaximum(30);
         this.timeBar.setString(" ");        
@@ -93,7 +96,8 @@ public class QuestionPanel extends JPanel {
         this.timeBar.setBackground(new Color(168, 221, 255));
         this.timeBar.setForeground(new Color(15, 60, 139));
         this.timeBar.setFont(customFont);
-       
+        
+        //Area to display question
         this.questionArea.setBackground(new Color(47, 59, 64));
         this.questionArea.setForeground(new Color(168, 221, 255));
         this.questionArea.setEditable(false);  
@@ -104,6 +108,7 @@ public class QuestionPanel extends JPanel {
         this.questionArea.setBounds(75, 100, 250, 100);
         this.questionArea.setLineWrap(true);
         
+        // To display question number
         this.qNum.setBackground(new Color(47, 59, 64));
         this.qNum.setForeground(new Color(168, 221, 255));
         this.qNum.setEditable(false); 
@@ -112,6 +117,7 @@ public class QuestionPanel extends JPanel {
         this.qNum.setEditable(false);
         this.qNum.setBounds(140, 80, 120, 20);
         
+        //To display current money
         this.winnings.setBackground(new Color(47, 59, 64));
         this.winnings.setForeground(new Color(255,165,0));              
         this.winnings.setEditable(false);
@@ -120,10 +126,12 @@ public class QuestionPanel extends JPanel {
         this.winnings.setEditable(false);
         this.winnings.setBounds(285, 25, 90, 20);
         
+        //To display current contestant
         this.nameLabel.setForeground(new Color(255,165,0));
         this.nameLabel.setFont(customFont);
         this.nameLabel.setBounds(25, 25, 250, 20);
         
+        //Answer buttons
         this.a = new JButton("A");
         this.b = new JButton("B");
         this.c = new JButton("C");
@@ -164,13 +172,13 @@ public class QuestionPanel extends JPanel {
         simpleTimer();
 
     }
-     
+    //Method to paint backgound with imported image 
     protected void paintComponent(Graphics g) {
 
     super.paintComponent(g);
         g.drawImage(bgImage, 0, 0, null);
 }
-    
+    //Method to add an actionlistener to each answer button
     void addQButtonListener(ActionListener listenForButton) {
 
         a.addActionListener(listenForButton);
@@ -179,6 +187,8 @@ public class QuestionPanel extends JPanel {
         d.addActionListener(listenForButton);
     }        
 
+   
+    //Method to instantiate and control the timer and its actionlistener
     public void simpleTimer(){
    
       timer = new Timer(1000,new ActionListener(){
@@ -205,7 +215,7 @@ public class QuestionPanel extends JPanel {
           
       });
    }
-   
+   //Method to restart timer
     public void updateTimer(){
         time = 31;
     }

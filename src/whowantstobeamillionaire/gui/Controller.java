@@ -1,14 +1,8 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package whowantstobeamillionaire.gui;
 
-import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.IOException;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -16,15 +10,13 @@ import java.util.Collections;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
-import javax.swing.event.ChangeEvent;
+
 
 /**
  *
- * @author Admin
+ * @author Sasha Buskin 19093824
  */
-public class Controller {
+public class Controller {//Controller to control interactions between model and view
     private View view; 
     private WhoWantsToBeAMillionaire model;
     
@@ -35,7 +27,8 @@ public class Controller {
  
         model.q = model.randomQuestion();
         updateQuestionGui();
-               
+        
+        //Add all actionlisteners to the view components when controller instantiated
         view.questionPanel.addQButtonListener(new AnswerListener1());
         view.menuCard.addMButtonListener(new AnswerListener2());
         view.addReturnButtonListener(new AnswerListener3());
@@ -43,7 +36,7 @@ public class Controller {
         view.questionPanel.timer.addActionListener(new AnswerListener6());
     }
     
-    
+    //Method to update the game question panel
     void updateQuestionGui(){
        
         view.questionPanel.updateTimer();
@@ -63,7 +56,7 @@ public class Controller {
    
     }
     
-    
+    //Answerlistener
     class AnswerListener1 implements ActionListener{ 
 
         public void actionPerformed(ActionEvent e) {

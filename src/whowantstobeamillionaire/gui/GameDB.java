@@ -7,7 +7,7 @@ package whowantstobeamillionaire.gui;
 
 /**
  *
- * @author Admin
+ * @author Sasha Buskin
  */
 
 import java.sql.Connection;
@@ -18,18 +18,18 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
-public class GameDB {
+public class GameDB {//Class to control and retrieve database data for game funtions
 
     private final DBManager dbManager;
     private final Connection conn;
     private Statement statement;
 
-    public GameDB() {
-        dbManager = new DBManager();
+    public GameDB() {        
+        dbManager = new DBManager();      
         conn = dbManager.getConnection();
 
     }
-
+    //Method to create contestants table in the database
     public void createContestantTable() {
         try {
            
@@ -43,6 +43,8 @@ public class GameDB {
         }
 
     }
+    
+    //Method to insert row into contestants table
     public void addContestantToDB(Contestant contestant) throws SQLException{
         String name = contestant.name;
         int winnings = contestant.money;
@@ -58,7 +60,7 @@ public class GameDB {
         }
     }
     
-    
+   //Method to retrieve contestant details from database, use details to create contestant objects and return a list of said objects 
    public List<Contestant> getContestantList() throws SQLException{
        Contestant contestantObj;
        List<Contestant> contestantList = new ArrayList(); 
@@ -77,7 +79,8 @@ public class GameDB {
         }
         return contestantList;
    }
-
+   
+   //Method to return list of question objects, constructed from data retrieved in this method from the database questions table, input is question level 
     public List<Question> getQuestionSet(int lvl) throws SQLException {
        
         Question questionObj;
@@ -102,13 +105,13 @@ public class GameDB {
         return questionList;
 
     }
-
+        //Method to check existance of table and update
     public void checkExistedTable(String name) {
         try {
-            DatabaseMetaData dbmd = this.conn.getMetaData();
-            String[] types = {"TABLE"};
+            DatabaseMetaData dbm = this.conn.getMetaData();
+            String[] a = {"TABLE"};
             statement = this.conn.createStatement();
-            ResultSet rs = dbmd.getTables(null, null, null, types);
+            ResultSet rs = dbm.getTables(null, null, null, a);
 
             while (rs.next()) {
                 String table_name = rs.getString("TABLE_NAME");
@@ -124,7 +127,9 @@ public class GameDB {
             System.out.println(ex.getMessage());
         }
     }
- public void createQuestionTable() {
+ 
+    //Method to construct and populate question table
+    public void createQuestionTable() {
         try {
             this.statement = conn.createStatement();
             this.checkExistedTable("QUESTIONS");

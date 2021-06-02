@@ -26,9 +26,9 @@ import javax.swing.table.DefaultTableModel;
 
 /**
  *
- * @author Admin
+ * @author Sasha Buskin
  */
-public class WinnerListPanel extends JPanel{
+public class WinnerListPanel extends JPanel{//JPanel to diplay the list of winners (contestants with 1000000) in a JTable
       
     JButton backToMain1;
     DefaultTableModel winTableModel;
@@ -37,9 +37,7 @@ public class WinnerListPanel extends JPanel{
     Font customFont, customFont2;
     
     public WinnerListPanel() throws FontFormatException{
-          
-       
-         
+                         
         backToMain1 = new JButton("BACK TO MAIN");
         winTableModel = new DefaultTableModel();
         

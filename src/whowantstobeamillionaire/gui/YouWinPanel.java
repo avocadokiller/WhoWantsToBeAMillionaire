@@ -1,8 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package whowantstobeamillionaire.gui;
 
 import java.awt.Color;
@@ -19,16 +15,16 @@ import javax.swing.JPanel;
 
 /**
  *
- * @author Admin
+ * @author Sasha Buskin 
  */
-public class YouWinPanel extends JPanel{
+public class YouWinPanel extends JPanel{ //JPanel class to be displayed only if contestant reaches one million
     
     JButton backToMain2;
     Image bgImage;  
     Font customFont;
     
     public YouWinPanel() throws FontFormatException{
-    
+    //Load custom font for Jbutton
     try {
     
         customFont = Font.createFont(Font.TRUETYPE_FONT, new File("Commodore Rounded v1.2.ttf")).deriveFont(12f);
@@ -38,6 +34,7 @@ public class YouWinPanel extends JPanel{
         } catch (IOException e) {
             e.printStackTrace();
         } 
+    //Load background image
     try {
          bgImage = ImageIO.read(new File("youwinbg.png"));
         } catch(Exception e){
@@ -55,7 +52,7 @@ public class YouWinPanel extends JPanel{
         this.add(backToMain2);
 
 }
-    
+//To paint backgroung with imported image    
 protected void paintComponent(Graphics g) {
 
     super.paintComponent(g);

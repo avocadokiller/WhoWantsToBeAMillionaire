@@ -5,17 +5,17 @@
  */
 package whowantstobeamillionaire.gui;
 
-/*
- * The programs are designed for PDC paper
+/**
+ *
+ * @author Sasha Buskin
  */
 
 import java.sql.Connection;
 import java.sql.DriverManager;
-import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
 
-public final class DBManager {
+
+public final class DBManager {//Class to establish and control database connectivity
 
    
     private static final String URL = "jdbc:derby://localhost:1527/WWTBAM";
@@ -31,7 +31,8 @@ public final class DBManager {
     public Connection getConnection() {
         return this.conn;
     }
-  
+    
+    //Method to connect to WWTBAM database
     public void establishConnection() {
         if (this.conn == null) {
             try {

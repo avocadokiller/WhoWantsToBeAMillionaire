@@ -12,9 +12,9 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 /**
  *
- * @author Admin
+ * @author Sasha Buskin
  */
-public class View extends JFrame {
+public class View extends JFrame {//View of the MVC, combining all Jpanel classes with cardlayout layout manager. 
 
     CardLayout cl;
 
@@ -41,7 +41,7 @@ public class View extends JFrame {
         questionPanel = new QuestionPanel();// Question card
         gameOverPanel = new GameOverPanel();//Gameover card
 
-
+        //Adding all the cards to main panel with card layout
         panelCont.add(youWinPanel, "7");
         panelCont.add(namePanel, "6");
         panelCont.add(menuCard, "1");
@@ -58,11 +58,12 @@ public class View extends JFrame {
         this.setResizable(false);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         
+        //Show Menu card first
         cl.show(panelCont, "1");
          
     }
-    
-void addReturnButtonListener(ActionListener listenForButton) {
+//Method to add actionlistener to all menubuttons in the gui.    
+void addReturnButtonListener(ActionListener listenForButton) { 
        
     gameOverPanel.backToMain.addActionListener(listenForButton);
     gameHistoryPanel.newbut.addActionListener(listenForButton);
