@@ -56,14 +56,14 @@ public class Controller {//Controller to control interactions between model and 
    
     }
     
-    //Answerlistener
+    //Answerlistener to control how program reacts to input into the game question panel, updates question gui, database
     class AnswerListener1 implements ActionListener{ 
 
         public void actionPerformed(ActionEvent e) {
             
-            if(e.getSource().equals(view.questionPanel.a)){
+            if(e.getSource().equals(view.questionPanel.a)){//If A is clicked 
                 
-                if(view.questionPanel.a.getText().contains(model.q.correct)){
+                if(view.questionPanel.a.getText().contains(model.q.correct)){//If A is correct
               
                      model.addWinnings();
                     
@@ -74,7 +74,7 @@ public class Controller {//Controller to control interactions between model and 
                     }
 
                 }
-                else{
+                else{//If A is incorrect
                     
                     view.gameOverPanel.winnings.append(model.a.money.toString());
                     view.cl.show(view.panelCont, "3");
@@ -89,9 +89,9 @@ public class Controller {//Controller to control interactions between model and 
                  }
             } 
                 
-            else if(e.getSource().equals(view.questionPanel.b)){
+            else if(e.getSource().equals(view.questionPanel.b)){//If B is clicked 
                
-                if(view.questionPanel.b.getText().contains(model.q.correct)){
+                if(view.questionPanel.b.getText().contains(model.q.correct)){//If B is correct
                    
                     model.addWinnings();
                    
@@ -102,7 +102,7 @@ public class Controller {//Controller to control interactions between model and 
                     updateQuestionGui();
                     }
                 }
-                else{
+                else{//If B is incorrect
                       
                       view.gameOverPanel.winnings.append(model.a.money.toString());
                       view.cl.show(view.panelCont, "3"); 
@@ -117,9 +117,9 @@ public class Controller {//Controller to control interactions between model and 
                        updateQuestionGui();
                 }
             }    
-            else if(e.getSource().equals(view.questionPanel.c)){
+            else if(e.getSource().equals(view.questionPanel.c)){//If C is clicked 
                 
-                if(view.questionPanel.c.getText().contains(model.q.correct)){
+                if(view.questionPanel.c.getText().contains(model.q.correct)){//If C is correct
                    
                     model.addWinnings();
                     
@@ -131,7 +131,7 @@ public class Controller {//Controller to control interactions between model and 
                         updateQuestionGui();
                     }
                 }
-                else{
+                else{//If C is incorrect
                       
                       view.gameOverPanel.winnings.append(model.a.money.toString());
                       view.cl.show(view.panelCont, "3");
@@ -145,9 +145,9 @@ public class Controller {//Controller to control interactions between model and 
                        updateQuestionGui();
                 }
             }
-            else if(e.getSource().equals(view.questionPanel.d)){
+            else if(e.getSource().equals(view.questionPanel.d)){//If D is clicked 
                
-                if(view.questionPanel.d.getText().contains(model.q.correct)){
+                if(view.questionPanel.d.getText().contains(model.q.correct)){//If D is correct
 
                     model.addWinnings();
                     if(model.a.money != 1000000){
@@ -156,7 +156,7 @@ public class Controller {//Controller to control interactions between model and 
                         updateQuestionGui();
                     }
                 }
-                else{
+                else{//If D is incorrect
                     
                    
                     try {
@@ -171,7 +171,7 @@ public class Controller {//Controller to control interactions between model and 
                 }
             }
          
-            if(model.a.money == 1000000){
+            if(model.a.money == 1000000){//If user wins
               
                 view.cl.show(view.panelCont, "7"); 
                 model.lvl = 1;
@@ -189,23 +189,24 @@ public class Controller {//Controller to control interactions between model and 
         }
     }
    
+    //Actionlistener class to control the menu buttons and transition between cards in card layout
     class AnswerListener2 implements ActionListener{ 
 
         public void actionPerformed(ActionEvent e) {
-            if(e.getSource().equals(view.menuCard.play)){
+            if(e.getSource().equals(view.menuCard.play)){//If user selects play
                 
                view.cl.show(view.panelCont, "6"); 
                 view.questionPanel.updateTimer();
                 view.questionPanel.timer.stop();
             }
-            else if(e.getSource().equals(view.menuCard.gList)){
+            else if(e.getSource().equals(view.menuCard.gList)){//If user selects game history
                 
                 clearGamesTable();
                 buildGamesTable();    
                 view.cl.show(view.panelCont, "4"); 
                
             }
-            else if(e.getSource().equals(view.menuCard.wList)){
+            else if(e.getSource().equals(view.menuCard.wList)){//If user selects winner list
                 clearWinTable();
                 buildWinTable(); 
                view.cl.show(view.panelCont, "5"); 
@@ -214,6 +215,7 @@ public class Controller {//Controller to control interactions between model and 
         
     }
     
+    //Back to main actionlistener for game over button
     class AnswerListener3 implements ActionListener{ 
 
         public void actionPerformed(ActionEvent e) {
@@ -230,11 +232,11 @@ public class Controller {//Controller to control interactions between model and 
         }
         
     }
-         
+    //Method to clear game history table     
     public void clearGamesTable(){
          view.gameHistoryPanel.gameTableModel.setRowCount(0);
      }
-     
+    //Method to build game history table using db retrieval methods  
     public void buildGamesTable(){
      
         List<Contestant> contestants = new ArrayList<>();
@@ -251,11 +253,11 @@ public class Controller {//Controller to control interactions between model and 
         }
     
     }
-      
+    //Method to clear winner list  
     public void clearWinTable(){
         view.winnerListPanel.winTableModel.setRowCount(0);
     }
-     
+    //Method to build winner list using db retrieval methods
     public void buildWinTable(){
         List<Contestant> contestants = new ArrayList<>();
         try {
@@ -272,6 +274,7 @@ public class Controller {//Controller to control interactions between model and 
         }
     }
      
+    //Actionlistener to recieve name from name entry panel and contruct new contestant accordingly, then change panel to begin game
     class AnswerListener5 implements ActionListener{ 
 
         public void actionPerformed(ActionEvent e) {
@@ -286,6 +289,7 @@ public class Controller {//Controller to control interactions between model and 
         }
     }
      
+    //Actionlistener added to timer to react when timer reaches 0 (user added to db, view game over panel)
     class AnswerListener6 implements ActionListener{
         public void actionPerformed(ActionEvent e) {
 

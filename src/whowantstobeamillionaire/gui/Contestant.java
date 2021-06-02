@@ -17,11 +17,9 @@ public class Contestant implements Serializable {
     
     String name;
     Integer money;
-
-   
     int hint;
     String date;
-    int fiftyFifty;
+    
     
     
     public Contestant(String name, Integer money, String date) {
@@ -29,13 +27,13 @@ public class Contestant implements Serializable {
         this.money = money;
         this.date = date;
         this.hint = 0;
-        this.fiftyFifty = 0;
+        
     }
     public Contestant(String name) {
         this.name = name;
         this.money = 0;
-        this.hint = 1;
-        this.fiftyFifty = 1;
+        this.hint = 0;
+        
         Calendar calendar = Calendar.getInstance();
         SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss");
 
@@ -43,7 +41,7 @@ public class Contestant implements Serializable {
     }
      @Override
     public String toString() {
-        return "Contestant{" + "name=" + name + ", money=" + money + ", hint=" + hint + ", date=" + date + ", fiftyFifty=" + fiftyFifty + '}';
+        return "Contestant{" + "name=" + name + ", money=" + money + ", hint=" + hint + ", date=" + date + '}';
     }
     
 }
