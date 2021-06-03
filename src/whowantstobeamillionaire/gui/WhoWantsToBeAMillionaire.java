@@ -22,6 +22,21 @@ public class WhoWantsToBeAMillionaire {//The game class, the model for the mvc, 
     GameDB gameDB = new GameDB();
     Integer lvl = Integer.valueOf(1);
     Question q = new Question();
+
+    public WhoWantsToBeAMillionaire() throws SQLException {
+    
+        if(!gameDB.tableExists("QUESTIONS")){
+        gameDB.createQuestionTable();
+        }else{
+          
+        }  
+        if(!gameDB.tableExists("CONTESTANTS")){
+            gameDB.createContestantTable();
+        }
+        else{
+            
+        }
+    }
     
                                                        
     public void UpdateQuestion(){

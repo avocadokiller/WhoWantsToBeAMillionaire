@@ -13,6 +13,7 @@ package whowantstobeamillionaire.gui;
 import java.sql.Connection;
 import java.sql.DatabaseMetaData;
 import java.sql.ResultSet;
+import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
@@ -24,17 +25,18 @@ public class GameDB {//Class to control and retrieve database data for game funt
     private final Connection conn;
     private Statement statement;
 
+    
     public GameDB() {        
         dbManager = new DBManager();      
         conn = dbManager.getConnection();
 
     }
-    //Method to create contestants table in the database
+    //Method to create contestants table in the database 
     public void createContestantTable() {
         try {
            
             this.statement = conn.createStatement();
-            this.checkExistedTable("CONTESTANTS");
+           // this.checkExistedTable("CONTESTANTS");
             this.statement.addBatch("CREATE TABLE CONTESTANTS (NAME VARCHAR(20), WINNINGS INT, DATE VARCHAR(20))");
             
             this.statement.executeBatch();
@@ -58,8 +60,11 @@ public class GameDB {//Class to control and retrieve database data for game funt
       } catch (SQLException ex) {
             System.out.println(ex.getNextException());
         }
+    } 
+    public void dropQuestionTable() throws SQLException{
+        this.statement = conn.createStatement();
+        this.statement.executeUpdate("DROP TABLE CONTESTANTS");
     }
-    
    //Method to retrieve contestant details from database, use details to create contestant objects and return a list of said objects 
    public List<Contestant> getContestantList() throws SQLException{
        Contestant contestantObj;
@@ -105,34 +110,21 @@ public class GameDB {//Class to control and retrieve database data for game funt
         return questionList;
 
     }
-        //Method to check existance of table and update
-    public void checkExistedTable(String name) {
-        try {
-            DatabaseMetaData dbm = this.conn.getMetaData();
-            String[] a = {"TABLE"};
-            statement = this.conn.createStatement();
-            ResultSet rs = dbm.getTables(null, null, null, a);
+    
+    
+//Method to check existance of table    
+boolean tableExists(String tableName) throws SQLException {
+    DatabaseMetaData meta = this.conn.getMetaData();
+    ResultSet resultSet = meta.getTables(null, null, tableName, new String[] {"TABLE"});
 
-            while (rs.next()) {
-                String table_name = rs.getString("TABLE_NAME");
-                System.out.println(table_name);
-                if (table_name.equalsIgnoreCase(name)) {
-                    statement.executeUpdate("Drop table " + name);
-                    System.out.println("Table " + name + " has been deleted.");
-                    break;
-                }
-            }
-            rs.close();
-        } catch (SQLException ex) {
-            System.out.println(ex.getMessage());
-        }
-    }
+    return resultSet.next();
+}    
  
     //Method to construct and populate question table
     public void createQuestionTable() {
         try {
             this.statement = conn.createStatement();
-            this.checkExistedTable("QUESTIONS");
+            //this.checkExistedTable("QUESTIONS");
             this.statement.addBatch("CREATE TABLE QUESTIONS  (QUESTION VARCHAR(200), LEVEL INT, WRONG1 VARCHAR(40), WRONG2 VARCHAR(40), WRONG3 VARCHAR(40), CORRECT VARCHAR(40), HINT VARCHAR(40))");
             this.statement.addBatch("INSERT INTO QUESTIONS VALUES ('Galileo was the citizen of which country?', 1, 'pasta', 'meat', 'hungry', 'Italy', 'YES'),\n"
                                     
